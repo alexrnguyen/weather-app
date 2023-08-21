@@ -7,22 +7,66 @@ const createWeatherInfo = () => {
   const locationInfoContainer = document.createElement("div");
   locationInfoContainer.id = "location-info-container";
 
-  const timeInfoContainer = document.createElement("div");
-  timeInfoContainer.id = "time-info-container";
+  const dateTimeInfoContainer = document.createElement("div");
+  dateTimeInfoContainer.id = "date-time-info-container";
+
+  const tempContainer = document.createElement("div");
+  tempContainer.id = "temp-container";
+
+  const conditionsContainer = document.createElement("div");
+  conditionsContainer.id = "conditions-container";
+
+  const feelsLikeContainer = document.createElement("div");
+  feelsLikeContainer.id = "feels-like-container";
 
   weatherInfoContainer.appendChild(locationInfoContainer);
-  weatherInfoContainer.appendChild(timeInfoContainer);
+  weatherInfoContainer.appendChild(dateTimeInfoContainer);
+  weatherInfoContainer.appendChild(tempContainer);
+  weatherInfoContainer.appendChild(conditionsContainer);
 
   return weatherInfoContainer;
 };
 
 const updateWeatherInfo = async (cityName) => {
+  // DOM Elements
+  const units = document.getElementById("units-switcher").dataset.units;
   const locationInfoContainer = document.getElementById(
     "location-info-container"
   );
+  const dateTimeInfoContainer = document.getElementById(
+    "date-time-info-container"
+  );
+
+  const tempContainer = document.getElementById("temp-container");
+  const conditionsContainer = document.getElementById("conditions-container");
+  // Retrieve weather data from API
   const weatherData = await getWeather(cityName);
   console.log(weatherData);
   locationInfoContainer.textContent = `${weatherData.location.name}, ${weatherData.location.country}`;
+
+  const dateTime = new Date(weatherData.location.localtime).toLocaleDateString(
+    "en-CA",
+    {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }
+  );
+  dateTimeInfoContainer.textContent = dateTime;
+
+  if (units === "celsius") {
+    tempContainer.textContent = `${
+      weatherData.current.temp_c
+    }${String.fromCharCode(176)}C`;
+  } else {
+    tempContainer.textContent = `${
+      weatherData.current.temp_f
+    }${String.fromCharCode(176)}F`;
+  }
+
+  conditionsContainer.textContent = weatherData.current.condition.text;
 };
 
 export { createWeatherInfo, updateWeatherInfo };

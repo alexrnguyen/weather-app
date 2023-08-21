@@ -1,0 +1,15 @@
+/* || Units Switcher */
+#units-switcher {
+  border-radius: 20px;
+  font-size: 1rem;
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+}
+
+[data-units="celsius"] {
+  background-color: rgb(8, 197, 8);
+}
+
+[data-units="fahrenheit"] {
+  background-color: rgb(196, 0, 0);
+}
