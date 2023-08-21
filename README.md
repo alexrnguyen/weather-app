@@ -11,3 +11,5 @@ var config = {
   API_KEY: "YOUR_API_KEY",
 };
 ```
+
+Ensure config.js is in the weather app directory on your computer
