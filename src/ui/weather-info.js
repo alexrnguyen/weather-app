@@ -1,4 +1,4 @@
-import { getWeather } from "../api/get-weather";
+import getWeather from "../api/get-weather";
 
 const createWeatherInfo = () => {
   const weatherInfoContainer = document.createElement("div");
@@ -29,7 +29,7 @@ const createWeatherInfo = () => {
 
 const updateWeatherInfo = async (cityName) => {
   // DOM Elements
-  const units = document.getElementById("units-switcher").dataset.units;
+  const { units } = document.getElementById("units-switcher").dataset;
   const locationInfoContainer = document.getElementById(
     "location-info-container"
   );
@@ -42,6 +42,11 @@ const updateWeatherInfo = async (cityName) => {
   // Retrieve weather data from API
   const weatherData = await getWeather(cityName);
   console.log(weatherData);
+
+  // Handle failure to retrieve data
+  if (!weatherData) {
+    return;
+  }
   locationInfoContainer.textContent = `${weatherData.location.name}, ${weatherData.location.country}`;
 
   const dateTime = new Date(weatherData.location.localtime).toLocaleDateString(

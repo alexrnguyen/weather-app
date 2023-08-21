@@ -1,5 +1,5 @@
-import { createSearchbar } from "./ui/searchbar";
-import { createUnitsSwitcher } from "./ui/units-switcher";
+import createSearchbar from "./ui/searchbar";
+import createUnitsSwitcher from "./ui/units-switcher";
 import { createWeatherInfo } from "./ui/weather-info";
 import "./css/style.css";
 

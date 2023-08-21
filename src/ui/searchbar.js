@@ -15,4 +15,4 @@ const createSearchbar = () => {
   return searchbar;
 };
 
-export { createSearchbar };
+export default createSearchbar;
