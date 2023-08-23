@@ -80,6 +80,7 @@ header {
   gap: 1em;
   color: var(--white);
   background-color: var(--black);
+  text-align: center;
 }
 
 #location-info-container {
