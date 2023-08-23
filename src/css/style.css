@@ -1,9 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@300;400;700;900&display=swap");
 
 /* || General Styles */
+
+:root {
+  --blue: #2667ff;
+  --green: #64f58d;
+  --black: #404e4d;
+  --white: #ebf2fa;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   font-family: Lato;
   margin: 0;
+  min-height: 100vh;
 }
 
 /* || Header */
@@ -13,7 +24,7 @@ header {
   grid-template-columns: 1fr 5fr 1fr;
   gap: 10px;
   align-items: center;
-  background-color: lightgray;
+  background-color: var(--green);
 }
 
 #logo {
@@ -50,9 +61,55 @@ header {
 }
 
 [data-units="celsius"] {
-  background-color: rgb(8, 197, 8);
+  background-color: var(--white);
 }
 
 [data-units="fahrenheit"] {
-  background-color: rgb(196, 0, 0);
+  color: white;
+  background-color: var(--blue);
+}
+
+/* || Weather Info */
+#weather-info-container {
+  flex: 1;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  color: var(--white);
+  background-color: var(--black);
+}
+
+#location-info-container {
+  font-size: 3em;
+}
+
+#date-time-info-container,
+#conditions-container {
+  font-size: 1.5em;
+}
+
+#weather-info-container img {
+  width: 64px;
+  height: 64px;
+  border: none;
+}
+
+#temp-container {
+  font-size: 2em;
+}
+
+/* || Footer */
+footer {
+  background-color: var(--green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a,
+a:visited {
+  color: inherit;
 }

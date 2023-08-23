@@ -10,6 +10,9 @@ const createWeatherInfo = () => {
   const dateTimeInfoContainer = document.createElement("div");
   dateTimeInfoContainer.id = "date-time-info-container";
 
+  const conditionsImage = document.createElement("img");
+  conditionsImage.id = "conditions-image";
+
   const tempContainer = document.createElement("div");
   tempContainer.id = "temp-container";
 
@@ -21,6 +24,7 @@ const createWeatherInfo = () => {
 
   weatherInfoContainer.appendChild(locationInfoContainer);
   weatherInfoContainer.appendChild(dateTimeInfoContainer);
+  weatherInfoContainer.appendChild(conditionsImage);
   weatherInfoContainer.appendChild(tempContainer);
   weatherInfoContainer.appendChild(conditionsContainer);
 
@@ -36,7 +40,7 @@ const updateWeatherInfo = async (cityName) => {
   const dateTimeInfoContainer = document.getElementById(
     "date-time-info-container"
   );
-
+  const conditionsImage = document.getElementById("conditions-image");
   const tempContainer = document.getElementById("temp-container");
   const conditionsContainer = document.getElementById("conditions-container");
   // Retrieve weather data from API
@@ -60,6 +64,7 @@ const updateWeatherInfo = async (cityName) => {
     }
   );
   dateTimeInfoContainer.textContent = dateTime;
+  conditionsImage.src = `https://${weatherData.current.condition.icon}`;
 
   if (units === "celsius") {
     tempContainer.textContent = `${
