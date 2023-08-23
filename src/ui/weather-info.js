@@ -1,4 +1,5 @@
 import getWeather from "../api/get-weather";
+import QuestionMark from "../assets/question-mark.svg";
 
 const createWeatherInfo = () => {
   const weatherInfoContainer = document.createElement("div");
@@ -31,6 +32,14 @@ const createWeatherInfo = () => {
   return weatherInfoContainer;
 };
 
+const clearWeatherInfo = () => {
+  document.getElementById("location-info-container").textContent = "";
+  document.getElementById("date-time-info-container").textContent = "";
+  document.getElementById("conditions-image").src = "";
+  document.getElementById("temp-container").textContent = "";
+  document.getElementById("conditions-container").textContent = "";
+};
+
 const updateWeatherInfo = async (cityName) => {
   // DOM Elements
   const { units } = document.getElementById("units-switcher").dataset;
@@ -45,10 +54,12 @@ const updateWeatherInfo = async (cityName) => {
   const conditionsContainer = document.getElementById("conditions-container");
   // Retrieve weather data from API
   const weatherData = await getWeather(cityName);
-  console.log(weatherData);
 
   // Handle failure to retrieve data
   if (!weatherData) {
+    clearWeatherInfo();
+    locationInfoContainer.textContent = "City not found!";
+    conditionsImage.src = QuestionMark;
     return;
   }
   locationInfoContainer.textContent = `${weatherData.location.name}, ${weatherData.location.country}`;
