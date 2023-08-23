@@ -3,7 +3,7 @@ import { updateWeatherInfo } from "./weather-info";
 // Create the searchbar that prompts the user to enter a city to retrieve weather information
 const createSearchbar = () => {
   const searchbar = document.createElement("input");
-  searchbar.type = "text";
+  searchbar.type = "search";
   searchbar.id = "searchbar";
   searchbar.placeholder = "Enter a city";
 

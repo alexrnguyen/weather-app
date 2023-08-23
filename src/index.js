@@ -2,7 +2,7 @@ import { createWeatherInfo, updateWeatherInfo } from "./ui/weather-info";
 import "./css/style.css";
 import createHeader from "./ui/header";
 import createFooter from "./ui/footer";
-import { createForecast } from "./ui/forecast";
+import { createForecastTable } from "./ui/forecast";
 
 const initializeWebsite = async () => {
   const loader = document.createElement("div");
@@ -11,7 +11,7 @@ const initializeWebsite = async () => {
   document.body.appendChild(loader);
   document.body.appendChild(createHeader());
   document.body.appendChild(createWeatherInfo());
-  document.body.appendChild(createForecast());
+  document.body.appendChild(createForecastTable());
   updateWeatherInfo("Edmonton");
   document.body.appendChild(createFooter());
 };
