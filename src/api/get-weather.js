@@ -5,10 +5,11 @@ const getWeather = async (cityName) => {
   try {
     const response = await fetch(
       // eslint-disable-next-line no-undef
-      `https://api.weatherapi.com/v1/current.json?key=${config.API_KEY}&q=${cityName}`
+      `https://api.weatherapi.com/v1/forecast.json?key=${config.API_KEY}&q=${cityName}&days=7`
     );
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
       return data;
     }
     return false;

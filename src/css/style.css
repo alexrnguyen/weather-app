@@ -17,6 +17,11 @@ body {
   min-height: 100vh;
 }
 
+#weather-info-container,
+#forecast-container {
+  background-color: var(--black);
+}
+
 /* || Header */
 header {
   padding: 1rem;
@@ -79,7 +84,6 @@ header {
   flex-direction: column;
   gap: 1em;
   color: var(--white);
-  background-color: var(--black);
   text-align: center;
 }
 

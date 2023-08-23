@@ -1,5 +1,6 @@
 import getWeather from "../api/get-weather";
 import QuestionMark from "../assets/question-mark.svg";
+import { updateForecastTable } from "./forecast";
 
 // Create weather info container (contains location, date/time, and current conditions)
 const createWeatherInfo = () => {
@@ -29,6 +30,7 @@ const createWeatherInfo = () => {
   weatherInfoContainer.appendChild(conditionsImage);
   weatherInfoContainer.appendChild(tempContainer);
   weatherInfoContainer.appendChild(conditionsContainer);
+  weatherInfoContainer.appendChild(feelsLikeContainer);
 
   return weatherInfoContainer;
 };
@@ -55,11 +57,14 @@ const updateWeatherInfo = async (cityName) => {
   const conditionsImage = document.getElementById("conditions-image");
   const tempContainer = document.getElementById("temp-container");
   const conditionsContainer = document.getElementById("conditions-container");
+  const feelsLikeContainer = document.getElementById("feels-like-container");
   // Retrieve weather data from API
   const loader = document.querySelector(".loader");
   loader.classList.toggle("hidden");
   const weatherData = await getWeather(cityName);
   loader.classList.toggle("hidden");
+
+  updateForecastTable(weatherData);
 
   // Handle failure to retrieve data
   if (!weatherData) {
@@ -90,9 +95,16 @@ const updateWeatherInfo = async (cityName) => {
     tempContainer.textContent = `${
       weatherData.current.temp_c
     }${String.fromCharCode(176)}C`;
+
+    feelsLikeContainer.textContent = `Feels like ${
+      weatherData.current.feelslike_c
+    }${String.fromCharCode(176)}C`;
   } else {
     tempContainer.textContent = `${
       weatherData.current.temp_f
+    }${String.fromCharCode(176)}F`;
+    feelsLikeContainer.textContent = `Feels like ${
+      weatherData.current.feelslike_f
     }${String.fromCharCode(176)}F`;
   }
 
