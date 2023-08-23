@@ -1,6 +1,7 @@
 import getWeather from "../api/get-weather";
 import QuestionMark from "../assets/question-mark.svg";
 
+// Create weather info container (contains location, date/time, and current conditions)
 const createWeatherInfo = () => {
   const weatherInfoContainer = document.createElement("div");
   weatherInfoContainer.id = "weather-info-container";
@@ -32,6 +33,7 @@ const createWeatherInfo = () => {
   return weatherInfoContainer;
 };
 
+// Clear weather info container contents
 const clearWeatherInfo = () => {
   document.getElementById("location-info-container").textContent = "";
   document.getElementById("date-time-info-container").textContent = "";
@@ -40,6 +42,7 @@ const clearWeatherInfo = () => {
   document.getElementById("conditions-container").textContent = "";
 };
 
+// Update the weather info container upon receiving input from the searchbox
 const updateWeatherInfo = async (cityName) => {
   // DOM Elements
   const { units } = document.getElementById("units-switcher").dataset;
@@ -53,7 +56,10 @@ const updateWeatherInfo = async (cityName) => {
   const tempContainer = document.getElementById("temp-container");
   const conditionsContainer = document.getElementById("conditions-container");
   // Retrieve weather data from API
+  const loader = document.querySelector(".loader");
+  loader.classList.toggle("hidden");
   const weatherData = await getWeather(cityName);
+  loader.classList.toggle("hidden");
 
   // Handle failure to retrieve data
   if (!weatherData) {
@@ -62,6 +68,8 @@ const updateWeatherInfo = async (cityName) => {
     conditionsImage.src = QuestionMark;
     return;
   }
+
+  // Add weather data to weather info UI
   locationInfoContainer.textContent = `${weatherData.location.name}, ${weatherData.location.country}`;
 
   const dateTime = new Date(weatherData.location.localtime).toLocaleDateString(
@@ -77,6 +85,7 @@ const updateWeatherInfo = async (cityName) => {
   dateTimeInfoContainer.textContent = dateTime;
   conditionsImage.src = `https://${weatherData.current.condition.icon}`;
 
+  // Change temperature based on selected units
   if (units === "celsius") {
     tempContainer.textContent = `${
       weatherData.current.temp_c

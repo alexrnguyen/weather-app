@@ -1,6 +1,7 @@
 import createSearchbar from "./searchbar";
 import createUnitsSwitcher from "./units-switcher";
 
+// Create the header of the webpage (includes logo, searchbar, and units switcher)
 const createHeader = () => {
   const headerContainer = document.createElement("header");
 

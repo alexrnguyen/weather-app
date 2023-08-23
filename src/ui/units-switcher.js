@@ -1,5 +1,6 @@
 import { updateWeatherInfo } from "./weather-info";
 
+// Create units switcher which allows the user to switch between celsius and fahrenheit measurements
 const createUnitsSwitcher = () => {
   const unitsSwitcher = document.createElement("button");
   unitsSwitcher.id = "units-switcher";
@@ -19,6 +20,9 @@ const createUnitsSwitcher = () => {
     const searchbarInput = document.getElementById("searchbar").value;
     if (searchbarInput !== "") {
       updateWeatherInfo(searchbarInput);
+    } else {
+      // Initial weather info
+      updateWeatherInfo("Edmonton");
     }
   });
 

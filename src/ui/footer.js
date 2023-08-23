@@ -1,3 +1,4 @@
+// Create footer of the webpage containing a linked to WeatherAPI.com
 const createFooter = () => {
   const footerContainer = document.createElement("footer");
 

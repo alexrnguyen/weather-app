@@ -1,24 +1,20 @@
-const config = {
-  API_KEY: "2a7887d45f054c1382672559231708",
-};
+import config from "../config";
 
+// Get the latest weather information for the given city from WeatherAPI.com
 const getWeather = async (cityName) => {
   try {
-    const loader = document.querySelector(".loader");
-    loader.classList.toggle("hidden");
     const response = await fetch(
       // eslint-disable-next-line no-undef
       `https://api.weatherapi.com/v1/current.json?key=${config.API_KEY}&q=${cityName}`
     );
-    loader.classList.toggle("hidden");
     if (response.ok) {
       const data = await response.json();
       return data;
     }
-    console.log("Invalid location");
     return false;
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-alert
+    alert(error);
     throw error;
   }
 };
