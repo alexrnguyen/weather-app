@@ -4,10 +4,13 @@ const config = {
 
 const getWeather = async (cityName) => {
   try {
+    const loader = document.querySelector(".loader");
+    loader.classList.toggle("hidden");
     const response = await fetch(
       // eslint-disable-next-line no-undef
       `https://api.weatherapi.com/v1/current.json?key=${config.API_KEY}&q=${cityName}`
     );
+    loader.classList.toggle("hidden");
     if (response.ok) {
       const data = await response.json();
       return data;
