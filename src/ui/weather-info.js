@@ -1,5 +1,6 @@
 import getWeather from "../api/get-weather";
 import QuestionMark from "../assets/question-mark.svg";
+import printTemperature from "../utils/print-temperature";
 import { updateForecastTable } from "./forecast";
 
 // Create weather info container (contains location, date/time, and current conditions)
@@ -92,20 +93,23 @@ const updateWeatherInfo = async (cityName) => {
 
   // Change temperature based on selected units
   if (units === "celsius") {
-    tempContainer.textContent = `${
+    tempContainer.textContent = printTemperature(
+      "celsius",
       weatherData.current.temp_c
-    }${String.fromCharCode(176)}C`;
-
-    feelsLikeContainer.textContent = `Feels like ${
+    );
+    feelsLikeContainer.textContent = printTemperature(
+      "celsius",
       weatherData.current.feelslike_c
-    }${String.fromCharCode(176)}C`;
+    );
   } else {
-    tempContainer.textContent = `${
+    tempContainer.textContent = printTemperature(
+      "fahrenheit",
       weatherData.current.temp_f
-    }${String.fromCharCode(176)}F`;
-    feelsLikeContainer.textContent = `Feels like ${
+    );
+    feelsLikeContainer.textContent = printTemperature(
+      "fahrenheit",
       weatherData.current.feelslike_f
-    }${String.fromCharCode(176)}F`;
+    );
   }
 
   conditionsContainer.textContent = weatherData.current.condition.text;

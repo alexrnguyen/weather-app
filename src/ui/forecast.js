@@ -1,3 +1,5 @@
+import printTemperature from "../utils/print-temperature";
+
 // Create a forecast table
 const createForecastTable = () => {
   const forecastContainer = document.createElement("div");
@@ -38,7 +40,6 @@ const updateForecastTable = (weatherData) => {
   const { units } = document.getElementById("units-switcher").dataset;
   for (let i = 0; i < 7; i++) {
     const row = document.querySelectorAll(`.forecast-row`)[i];
-    console.log(row);
 
     // Each row contains a date, icon, conditions, and low/high temperature
     const dateCell = row.childNodes[0];
@@ -64,21 +65,23 @@ const updateForecastTable = (weatherData) => {
 
     // Change low/high temperature based on units selected
     if (units === "celsius") {
-      highTempCell.textContent = `${
+      highTempCell.textContent = printTemperature(
+        "celsius",
         forecast.day.maxtemp_c
-      }${String.fromCharCode(176)}C`;
-
-      lowTempCell.textContent = `${forecast.day.mintemp_c}${String.fromCharCode(
-        176
-      )}C`;
+      );
+      lowTempCell.textContent = printTemperature(
+        "celsius",
+        forecast.day.mintemp_c
+      );
     } else {
-      highTempCell.textContent = `${
+      highTempCell.textContent = printTemperature(
+        "fahrenheit",
         forecast.day.maxtemp_f
-      }${String.fromCharCode(176)}F`;
-
-      lowTempCell.textContent = `${forecast.day.mintemp_f}${String.fromCharCode(
-        176
-      )}F`;
+      );
+      lowTempCell.textContent = printTemperature(
+        "fahrenheit",
+        forecast.day.mintemp_f
+      );
     }
   }
 };

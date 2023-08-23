@@ -9,7 +9,6 @@ const getWeather = async (cityName) => {
     );
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       return data;
     }
     return false;
