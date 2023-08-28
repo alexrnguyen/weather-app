@@ -15,11 +15,11 @@ const createForecastTable = () => {
   conditionsHeader.textContent = "Conditions";
   conditionsHeader.colSpan = 2;
 
-  const lowTempHeader = headers.insertCell();
-  lowTempHeader.textContent = "Low";
-
   const highTempHeader = headers.insertCell();
   highTempHeader.textContent = "High";
+
+  const lowTempHeader = headers.insertCell();
+  lowTempHeader.textContent = "Low";
 
   for (let i = 0; i < 7; i++) {
     const row = forecastTable.insertRow();
