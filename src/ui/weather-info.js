@@ -97,19 +97,19 @@ const updateWeatherInfo = async (cityName) => {
       "celsius",
       weatherData.current.temp_c
     );
-    feelsLikeContainer.textContent = printTemperature(
+    feelsLikeContainer.textContent = `Feels like: ${printTemperature(
       "celsius",
       weatherData.current.feelslike_c
-    );
+    )}`;
   } else {
     tempContainer.textContent = printTemperature(
       "fahrenheit",
       weatherData.current.temp_f
     );
-    feelsLikeContainer.textContent = printTemperature(
+    feelsLikeContainer.textContent = `Feels like: ${printTemperature(
       "fahrenheit",
       weatherData.current.feelslike_f
-    );
+    )}`;
   }
 
   conditionsContainer.textContent = weatherData.current.condition.text;
