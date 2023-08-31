@@ -21,7 +21,7 @@ const createForecastTable = () => {
   const lowTempHeader = headers.insertCell();
   lowTempHeader.textContent = "Low";
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 3; i++) {
     const row = forecastTable.insertRow();
     row.className = "forecast-row";
     for (let j = 0; j < 5; j++) {
@@ -38,7 +38,7 @@ const createForecastTable = () => {
 // Update the forecast table upon receiving weather data from the API
 const updateForecastTable = (weatherData) => {
   const { units } = document.getElementById("units-switcher").dataset;
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 3; i++) {
     const row = document.querySelectorAll(`.forecast-row`)[i];
 
     // Each row contains a date, icon, conditions, and low/high temperature
